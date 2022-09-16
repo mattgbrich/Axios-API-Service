@@ -5,8 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import Icon from '@mui/material/Icon'
 
-import useTestAPI from './store/hooks/useTestAPI'
-
+import useAPI from './store/hooks/useAPI';
 
 function MyButton ({ onClick, label, isLoading, error }) {
   return (
@@ -36,16 +35,15 @@ function Actions () {
   const [unavailableLoading, setUnavailableLoading] = useState(false)
   const [error, setError] = useState(false)
 
-  const {
-    forbidden,
-    unauthorized,
-    notFound,
-    timeout,
-    teapot,
-    serverErr,
-    badGateway,
-    unavailable
-  } = useTestAPI();
+  const API = useAPI();
+  const forbidden = () => API.get('/forbidden')
+  const unauthorized = () => API.get('/unauthorized')
+  const notFound = () => API.get('/not-found', null, {suppressErrors: [404]})
+  const timeout = () => API.get('/timeout')
+  const teapot = () => API.get('/teapot', null, {customMessageMap: {418: 'This is a Custom Message'}})
+  const serverErr = () => API.get('/server-error')
+  const badGateway = () => API.get('/bad-gateway')
+  const unavailable = () => API.get('/unavailable')
 
   function createHandler (action, setLoading, label) {
     setLoading(true)
