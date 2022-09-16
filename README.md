@@ -12,4 +12,5 @@ On the page, "Foods" shows examples of `GET`, `PUT`, `POST`, and `DELETE` HTTP c
 
 The `Notifications` component is a single global Component rendered once at the root that is controlled by a redux store. The global HTTP handler dispatches updates to the redux state that opens the Dialog and sets the content to be displayed in the UI. This could easily be changed to whatever notification system is desired (the Material Dialog here is just an example)
 
-
+### Server
+The server is just a simple Express API for demo purposes. It's configured to return specitic responses to show examples of these responses being handled in the front end app.
